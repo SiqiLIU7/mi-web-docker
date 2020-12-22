@@ -27,7 +27,9 @@ The entire installation may take around 30 minutes to finish.
 Open browser, and enter http://localhost:8080/ to start exploring!
 
 # Debug
-If Laravel or php related error occurs on website, please first try the following commands in your host to fix:
+### Enter app container to do whatever debugs you want:
+`docker exec -it app bash`
+### If Laravel or php related error occurs on website, please first try the following commands in your host to fix:
 ```
 docker exec -it app php artisan config:clear
 docker exec -it app php artisan cache:clear
