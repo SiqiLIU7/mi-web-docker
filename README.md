@@ -16,8 +16,8 @@ $ ./install.sh
 ```
 
 The `install.sh` script will do the following things: 
-1. build docker containers for our project (app container for running laravel application, nginx container, mysql container)
-2. Install services in the app container:
+1. build docker containers for our project (`app` container for running laravel application, `nginx` container, `mysql` container)
+2. Install services in the `app` container:
    1. install mi-web (https://github.com/ZhaoweiTan/mi-web.git) into /var/www.
    2. install MobileInsight_enb (https://github.com/ZhaoweiTan/mobile_insight_enb.git) into /var/www/public/mi/mobile_insight_enb.
    3. install OpenAirInterface_enb (https://github.com/ZhaoweiTan/MI-eNB.git) into /var/www/public/mi/MI-eNB. Then build it 
