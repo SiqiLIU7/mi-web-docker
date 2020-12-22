@@ -22,3 +22,18 @@ The `install.sh` script will do the following things:
    3. install OpenAirInterface_enb (https://github.com/ZhaoweiTan/MI-eNB.git) and build it 
 
 The entire installation may take around 30 minutes to finish.
+
+## Run
+Open browser, and enter http://localhost:8080/ to start exploring!
+
+# Debug
+If Laravel or php related errors occur on website, please first try the following commands in your host to fix:
+```
+docker exec -it app php artisan config:clear
+docker exec -it app php artisan cache:clear
+docker exec -it app php artisan route:clear
+docker exec -it app php artisan view:clear
+docker exec -it app php artisan key:generate
+docker exec -it app php artisan config:cache
+docker exec -it app php artisan migrate
+```
