@@ -3,7 +3,8 @@ Docker installation for mi-web website UI, integrated with OpenAirInterface eNB 
 
 # Usage
 ## Install 
-Note: Only support Ubuntu. Will support more OS in the future.
+Note: 1. Only support Ubuntu. Will support more OS in the future.
+2. Please make sure the ports 8080, 8443 and 8306 are not occupied by other processes before installation.
 ```
 $ sudo groupadd docker 
 $ sudo gpasswd -a $USER docker 
