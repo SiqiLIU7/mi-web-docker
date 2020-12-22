@@ -41,6 +41,7 @@ docker exec -it app php artisan key:generate
 docker exec -it app php artisan config:cache
 docker exec -it app php artisan migrate
 ```
+also hava a try by adding option `--user www-data` to the above commands.
 
 # Note
 1. Port mapping: 8080 on host -> 80 on container, 8443 on host -> 443 on container, 8306 on host -> 3306 on container. Please make sure the ports 8080, 8443 and 8306 are not occupied by other processes before installation.
