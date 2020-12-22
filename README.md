@@ -1,5 +1,5 @@
 # mi-web-docker
-Docker installation for mi-web website UI (integrated with OpenAirInterface eNB and MobileInsight eNB)
+Docker installation for mi-web website UI, integrated with OpenAirInterface eNB and MobileInsight eNB
 
 # Usage
 ## Install 
