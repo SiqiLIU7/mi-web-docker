@@ -70,16 +70,16 @@ sudo chown -R $USER:$USER $WORKING_DIR/$APP_DIRNAME
 
 cd $WORKING_DIR/$APP_DIRNAME
 
-docker-compose up --build --force-recreate --no-deps -d
+docker-compose up -d
 
-docker exec -it app php artisan config:clear
-docker exec -it app php artisan cache:clear
-docker exec -it app php artisan route:clear
-docker exec -it app php artisan view:clear
+docker exec -it --user www-data app php artisan config:clear
+docker exec -it --user www-data app php artisan cache:clear
+docker exec -it --user www-data app php artisan route:clear
+docker exec -it --user www-data app php artisan view:clear
 
 docker exec -it app php artisan key:generate
 docker exec -it app php artisan config:cache
-docker exec -it app php artisan migrate
+docker exec -it --user www-data app php artisan migrate
 
 echo "\nDownloading MobileInsight_enb ..."
 docker exec -it --user www-data app git clone $MI_ENB_REPO_URL public/mi/mobile_insight_enb
