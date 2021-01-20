@@ -12,7 +12,7 @@ ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install dependencies
-RUN apt-get update && apt-get install -yq --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     supervisor \
     apt-utils \
     curl \
@@ -49,7 +49,6 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     wget \
     cmake \
     build-essential \
-    nano \
     g++ \
     kmod \
     linux-image-$(uname -r) \
@@ -58,12 +57,11 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     protobuf-compiler \
     python3 \
     python3-pip \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install extensions
-#RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
-#RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg
-#RUN docker-php-ext-install gd
+    # the following 3 libs are required for compiling mobile_insight_enb
+    libgcrypt20-dev \
+    libglib2.0-dev \
+    flex bison \
+    && apt-get clean 
 
 # Set user for laravel application
 RUN deluser www-data

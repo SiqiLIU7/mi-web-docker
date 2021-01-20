@@ -1,9 +1,11 @@
 #!/bin/sh
 CURRENT_PATH="$(pwd)"
 
+yes | ./uninstall.sh
+
 # ======Install docker ====== 
 echo "\n### Begin installing Docker of the latest version ###\n"
-echo "\nUninstall Docker (old version)"
+echo "\nUninstall previously installed Docker"
 sudo apt-get remove docker docker-engine docker.io containerd runc
 
 echo "\nInstall Docker (version: 5:18.09.9~3-0~ubuntu-xenial)"
@@ -39,7 +41,7 @@ MI_ENB_REPO_URL="https://github.com/ZhaoweiTan/mobile_insight_enb.git"
 WORKING_DIR="$HOME/mi_web_workdir"
 APP_DIRNAME="mi-web"
 
-echo "\nClean up previous installs..."
+echo "Remove previous installed working directory..."
 sudo rm -r $WORKING_DIR
 
 # Initial Setup
@@ -70,7 +72,7 @@ sudo chown -R $USER:$USER $WORKING_DIR/$APP_DIRNAME
 
 cd $WORKING_DIR/$APP_DIRNAME
 
-docker-compose up -d
+docker-compose down && docker-compose up --build -d
 
 docker exec -it --user www-data app php artisan config:clear
 docker exec -it --user www-data app php artisan cache:clear
@@ -83,6 +85,12 @@ docker exec -it --user www-data app php artisan migrate
 
 echo "\nDownloading MobileInsight_enb ..."
 docker exec -it --user www-data app git clone $MI_ENB_REPO_URL public/mi/mobile_insight_enb
+
+# docker exec -it --user www-data app sudo apt-get update
+# docker exec -it --user www-data app sudo apt-get install -y libgcrypt20-dev libglib2.0-dev flex bison
+
+echo "\nCompiling MobileInsight_enb ..."
+docker exec -it app bash -c "cd public/mi/mobile_insight_enb && ./install-ubuntu.sh"
 
 echo "\nDownloading OpenAirInterface ..."
 docker exec -it --user www-data app git clone $OAI_REPO_URL public/mi/MI-eNB
